@@ -1,0 +1,13 @@
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+
+# IDE / Editors
+.idea/
+.vscode/
+*.user
+
+# Build outputs inside template if any
+**/bin/
+**/obj/

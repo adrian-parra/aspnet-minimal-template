@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Antigravity",
+  "classifications": [
+    "Web",
+    "WebAPI",
+    "Minimal API"
+  ],
+  "name": "ASP.NET Core Minimal API Starter",
+  "identity": "MinimalApi.Starter.CSharp",
+  "shortName": "minimal-api",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "MinimalApi",
+  "preferNameDirectory": true
+}
