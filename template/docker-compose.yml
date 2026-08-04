@@ -1,7 +1,5 @@
-version: '3.8'
-
 services:
-  # Backend API ASP.NET Core 9
+  # 1. Backend API ASP.NET Core 9
   backend:
     build:
       context: .
@@ -14,7 +12,7 @@ services:
     ports:
       - "5000:5000"
 
-  # Base de Datos MySQL 8
+  # 2. Base de Datos MySQL 8
   mysql_db:
     image: mysql:8.0
     container_name: minimal_api_mysql
@@ -25,7 +23,7 @@ services:
     ports:
       - "3306:3306"
 
-  # Base de Datos SQL Server 2022
+  # 3. Base de Datos Microsoft SQL Server 2022
   sqlserver_db:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: minimal_api_sqlserver
@@ -35,3 +33,26 @@ services:
       MSSQL_SA_PASSWORD: "Password123!"
     ports:
       - "1433:1433"
+
+  # 4. phpMyAdmin (Gestor Web Visual para MySQL)
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: minimal_api_phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mysql_db
+      MYSQL_ROOT_PASSWORD: root_password
+    depends_on:
+      - mysql_db
+
+  # 5. CloudBeaver (Gestor Web Universal para SQL Server / MySQL)
+  cloudbeaver:
+    image: dbeaver/cloudbeaver:latest
+    container_name: minimal_api_cloudbeaver
+    restart: always
+    ports:
+      - "8978:8978"
+    depends_on:
+      - sqlserver_db
