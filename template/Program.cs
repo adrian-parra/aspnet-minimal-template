@@ -31,11 +31,16 @@ var app = builder.Build();
 app.UseCors("AllowAll");
 app.UseExceptionHandler();
 
-if (app.Environment.IsDevelopment())
+// Enable Swagger UI by default
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
+    c.RoutePrefix = "swagger";
+});
+
+// Redirect root "/" to "/swagger" for developer convenience
+app.MapGet("/", () => Results.Redirect("/swagger"));
 
 // Map Endpoints
 app.MapHealthEndpoints();
