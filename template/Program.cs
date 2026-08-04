@@ -39,8 +39,8 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = "swagger";
 });
 
-// Redirect root "/" to "/swagger" for developer convenience
-app.MapGet("/", () => Results.Redirect("/swagger"));
+// Redirect root "/" to "/swagger" (Oculto de la documentación Swagger con ExcludeFromDescription)
+app.MapGet("/", () => Results.Redirect("/swagger")).ExcludeFromDescription();
 
 // Map Endpoints
 app.MapHealthEndpoints();
