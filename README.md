@@ -1,6 +1,6 @@
 # 🚀 ASP.NET Core 9 Minimal API Starter & Automation Template
 
-Generador de proyectos y plantilla nativa para **ASP.NET Core 9 Minimal API (C#)**. Permite crear en segundos APIs REST listas para producción con arquitectura limpia desacoplada, patrón `Result`, manejo de errores global, validaciones automáticas con FluentValidation, paquetes NuGet pre-instalados e infraestructura **Docker + Docker Compose** para MySQL y SQL Server.
+Generador de proyectos y plantilla nativa para **ASP.NET Core 9 Minimal API (C#)**. Permite crear en segundos APIs REST listas para producción con arquitectura limpia desacoplada, patrón `Result`, manejo de errores global, validaciones automáticas con FluentValidation, autenticación opcional JWT con BCrypt, paquetes NuGet pre-instalados e infraestructura **Docker + Docker Compose** para MySQL y SQL Server.
 
 ---
 
@@ -23,8 +23,8 @@ MiNuevaApi/
 ├── Repositories/                 # Capa de datos (Dapper / SQL / MySQL)
 ├── Services/                     # Capa de Lógica de Negocio
 ├── Validations/                  # Validadores FluentValidation
-├── Program.cs                    # Configuración de Swagger, CORS, Handlers y Validators
-├── appsettings.json              # ConnectionStrings para MySQL y SQL Server
+├── Program.cs                    # Configuración de Swagger, CORS, Handlers, JWT Auth y Validators
+├── appsettings.json              # ConnectionStrings (MySQL/SQLServer) + JwtSettings
 ├── Dockerfile                    # Multi-stage build para .NET 9
 └── docker-compose.yml            # Orquestación con MySQL 8 y SQL Server 2022
 ```
@@ -38,6 +38,8 @@ MiNuevaApi/
 - **`MySqlConnector`**: Driver de alto rendimiento para MySQL.
 - **`Microsoft.Data.SqlClient`**: Driver oficial para SQL Server.
 - **`Swashbuckle.AspNetCore`**: Documentación interactiva con Swagger UI.
+- **`Microsoft.AspNetCore.Authentication.JwtBearer`** *(Opcional)*: Autenticación con tokens JWT.
+- **`BCrypt.Net-Next`** *(Opcional)*: Encriptado y Hash seguro de contraseñas.
 
 ---
 
@@ -55,18 +57,18 @@ cd aspnet-minimal-template
 
 ## 💡 Formas de Uso
 
-### Opción 1: Comando Nativo `dotnet new`
+### Opción 1: Script Interactivo CLI (`create-aspnet-api`) - RECOMENDADO 🚀
+```bash
+create-aspnet-api FacturacionApi
+```
+*(El script te guiará interactivamente para elegir la base de datos a utilizar y si deseas incluir Autenticación JWT + BCrypt con Swagger preconfigurado).*
+
+### Opción 2: Comando Nativo `dotnet new`
 ```bash
 dotnet new minimal-api -n FacturacionApi
 cd FacturacionApi
 dotnet run
 ```
-
-### Opción 2: Script Interactivo CLI (`create-aspnet-api`)
-```bash
-create-aspnet-api FacturacionApi
-```
-*(El script te guiará interactivamente para elegir la base de datos a utilizar: MySQL, SQL Server o ambas).*
 
 ---
 

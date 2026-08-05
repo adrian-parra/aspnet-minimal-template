@@ -22,6 +22,16 @@ services:
       MYSQL_DATABASE: mydb
     ports:
       - "3306:3306"
+    volumes:
+      # 💾 1. PERSISTENCIA: Guarda los datos en un volumen para que NO se borren al apagar Docker
+      - mysql_minimal_data:/var/lib/mysql
+      # 🚀 2. INICIALIZACIÓN: Ejecuta este script automáticamente la primera vez que se crea el contenedor
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   # 3. Base de Datos Microsoft SQL Server 2022
   sqlserver_db:
@@ -56,3 +66,7 @@ services:
       - "8978:8978"
     depends_on:
       - sqlserver_db
+
+# 💾 Volumen para Persistencia de Datos
+volumes:
+  mysql_minimal_data:
