@@ -43,14 +43,22 @@ MiNuevaApi/
 
 ---
 
-## ⚡ Instalación Rápida (1 Solo Paso)
+## ⚡ Instalación Rápida
 
-Clona este repositorio y ejecuta el instalador automático:
+Clona este repositorio y ejecuta el instalador automático correspondiente a tu sistema operativo:
 
+### 🍎 Linux / macOS (Bash)
 ```bash
-git clone https://github.com/TU_USUARIO/aspnet-minimal-template.git
+git clone https://github.com/adrian-parra/aspnet-minimal-template.git
 cd aspnet-minimal-template
 ./install.sh
+```
+
+### 🪟 Windows (PowerShell)
+```powershell
+git clone https://github.com/adrian-parra/aspnet-minimal-template.git
+cd aspnet-minimal-template
+.\install.ps1
 ```
 
 ---
@@ -59,6 +67,7 @@ cd aspnet-minimal-template
 
 ### Opción 1: Script Interactivo CLI (`create-aspnet-api`) - RECOMENDADO 🚀
 ```bash
+# En macOS / Linux / Windows (PowerShell o CMD):
 create-aspnet-api FacturacionApi
 ```
 *(El script te guiará interactivamente para elegir la base de datos a utilizar y si deseas incluir Autenticación JWT + BCrypt con Swagger preconfigurado).*

@@ -9,5 +9,5 @@ Thumbs.db
 *.user
 
 # Build outputs inside template if any
-**/bin/
-**/obj/
+template/**/bin/
+template/**/obj/
