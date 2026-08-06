@@ -1,6 +1,7 @@
 using FluentValidation;
 using MinimalApi.Endpoints;
 using MinimalApi.Middleware;
+using MinimalApi.Repositories;
 using MinimalApi.Services;
 // Descomentar para JWT:
 // using System.Text;
@@ -50,9 +51,11 @@ builder.Services.AddProblemDetails();
 // 3. FluentValidation Auto-Registration
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
-// 4. JWT Authentication, Authorization & Services (Descomentar para habilitar)
+// 4. JWT Authentication, Authorization, Repositories & Services (Descomentar para habilitar)
 /*
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IJwtService, JwtServices>();
+builder.Services.AddScoped<IAuthServices, AuthServices>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -106,5 +109,6 @@ app.MapGet("/", () => Results.Redirect("/swagger")).ExcludeFromDescription();
 
 // Map Endpoints
 app.MapHealthEndpoints();
+// app.MapAuthEndpoints(); // Descomentar si usas Autenticación
 
 app.Run();
